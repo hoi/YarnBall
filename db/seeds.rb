@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+user = User.create!(username: "hyon", password: "asdf")
+
+root = user.yarns.create!(name: "root")
+
+user.yarns.create!(pid: root.id, name: "unsorted")

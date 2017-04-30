@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  yarn: one
+  details: MyString
+  happens_at: 2017-04-30 16:51:03
+  repeat: MyString
+  done: false
+
+two:
+  yarn: two
+  details: MyString
+  happens_at: 2017-04-30 16:51:03
+  repeat: MyString
+  done: false

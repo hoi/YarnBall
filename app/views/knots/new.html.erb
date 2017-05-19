@@ -1,1 +1,25 @@
-<%= current_user.username  %>
+<div class="knot-form">
+  <div class="knot-dropdown">
+    <select value="2">
+      <% @yarns.each do |yarn| %>
+          <option value="<%= yarn.id %>"><%= yarn.name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="knot-details">
+    <textarea></textarea>
+  </div>
+  <div class="knot-date">
+    <input type="date" />
+  </div>
+  <div class="knot-dropdown">
+    <select value="2">
+      <% Knot::VALID_REPEATS.each do |repeat| %>
+          <option value="<%= repeat %>"><%= repeat %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="knot-button">
+    <button>Save</button>
+  </div>
+</div>

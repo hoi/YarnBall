@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170430233546) do
+ActiveRecord::Schema.define(version: 20170430235102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "knots", force: :cascade do |t|
+    t.integer  "yarn_id",                      null: false
+    t.string   "details",                      null: false
+    t.datetime "happens_at"
+    t.string   "repeat",     default: "never", null: false
+    t.boolean  "done"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.index ["yarn_id"], name: "index_knots_on_yarn_id", using: :btree
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "username"
@@ -31,5 +42,6 @@ ActiveRecord::Schema.define(version: 20170430233546) do
     t.index ["user_id"], name: "index_yarns_on_user_id", using: :btree
   end
 
+  add_foreign_key "knots", "yarns"
   add_foreign_key "yarns", "users"
 end

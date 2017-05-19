@@ -1,0 +1,5 @@
+class KnotsController < ApplicationController
+
+
+
+end

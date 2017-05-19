@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
 
   skip_before_action :verify_authenticity_token
 
-  before_action :verify_current_user
+  before_action :verify_current_user, :get_root
 
   def current_user
     @current_user ||= User.find(session[:user_id])
@@ -15,6 +15,11 @@ class ApplicationController < ActionController::Base
     current_user.present?
   rescue
     redirect_to '/login'
+  end
+
+  
+  def get_root
+    @root = current_user.yarns.find_by(pid: nil)
   end
 
 end

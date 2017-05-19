@@ -6,6 +6,8 @@ Rails.application.routes.draw do
 
   get '/yarns/:yarn_id', to: 'yarns#show'
 
+  get '/knots', to: 'knots#index'
+
   root to: 'knots#new'
 
 end

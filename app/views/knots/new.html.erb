@@ -1,7 +1,7 @@
 <div class="knot-form">
   <div class="knot-dropdown">
     <select value="2">
-      <% @yarns.each do |yarn| %>
+      <% current_user.yarns.each do |yarn| %>
           <option value="<%= yarn.id %>"><%= yarn.name %></option>
       <% end %>
     </select>
@@ -10,7 +10,7 @@
     <textarea></textarea>
   </div>
   <div class="knot-date">
-    <input type="date" />
+    <input type="date" value="<%= Date.today %>"/>
   </div>
   <div class="knot-dropdown">
     <select value="2">

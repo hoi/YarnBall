@@ -1,0 +1,22 @@
+<div class="yarn-show">
+  <% if @yarn.pid.present? %>
+      <div class="yarn-up"><a href="/yarns/<%= @yarn.pid %>"><< <%= @parent.name %></a></div>
+  <% end %>
+  <div class="yarn-current">
+    <%= @yarn.name %>
+  </div>
+  <div class="yarn-form">
+    <input type="text" />
+    <button>+</button>
+  </div>
+  <% @children.each do |child| %>
+      <div class="yarn-child">
+        <a href="/yarns/<%= child.id %>"><%= child.name %></a>
+      </div>
+  <% end %>
+  <% @yarn.knots.each do |knot| %>
+      <div class="yarn-knots">
+        <%= knot.details %>
+      </div>
+  <% end %>
+</div>

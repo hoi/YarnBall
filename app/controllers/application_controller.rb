@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     redirect_to '/login'
   end
 
-  
+
   def get_root
     @root = current_user.yarns.find_by(pid: nil)
   end

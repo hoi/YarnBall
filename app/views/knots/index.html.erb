@@ -1,0 +1,11 @@
+<div class="knots-list">
+  <% if @knots.count > 0 %>
+    <% @knots.each do |knot| %>
+      <div class="knot">
+        <%= knot.details %>
+      </div>
+    <% end %>
+  <% else %>
+    No knots.
+  <% end %>
+</div>

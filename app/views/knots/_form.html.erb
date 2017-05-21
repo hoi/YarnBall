@@ -1,0 +1,27 @@
+<div class="knot-form">
+  <%= form_for(knot) do |f| %>
+    <div class="knot-dropdown">
+      <select id="knot_yarn_id" name="knot[yarn_id]">
+        <% current_user.yarns.each do |yarn| %>
+            <option value="<%= yarn.id %>" <%= yarn.name=="unsorted" ? "selected" : "" %>><%= yarn.name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="knot-details">
+      <%= f.text_area :details %>
+    </div>
+    <div class="knot-date">
+      <%= f.date_field :happens_at %>
+    </div>
+    <div class="knot-dropdown">
+      <select id="knot_repeat" name="knot[repeat]">
+        <% Knot::VALID_REPEATS.each do |repeat| %>
+            <option value="<%= repeat %>"><%= repeat %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="knot-button">
+      <%= f.submit "Save" %>
+    </div>
+  <% end %>
+</div>

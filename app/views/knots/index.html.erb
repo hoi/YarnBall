@@ -2,7 +2,7 @@
   <% if @knots.count > 0 %>
     <% @knots.each do |knot| %>
       <div class="knot">
-        <%= knot.details %>
+        <%= render 'details', knot: knot %>
       </div>
     <% end %>
   <% else %>

@@ -1,0 +1,3 @@
+<%= knot.happens_at.strftime("%m/%d") %> <%= knot.details %>
+<a href="/knots/<%= knot.id %>/edit">edit</a>
+<a href="/knots/<%= knot.id %>/done"><%= knot.done ? "undo" : "done" %></a>

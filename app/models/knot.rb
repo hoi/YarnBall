@@ -19,6 +19,12 @@ class Knot < ApplicationRecord
 
 
 
+  ### SCOPES ###
+
+  default_scope { order(:happens_at) }
+
+
+
   ### VALIDATIONS ###
 
   validates :yarn, :details, presence: true
@@ -29,6 +35,12 @@ class Knot < ApplicationRecord
   ### CALLBACKS ###
 
   after_initialize :set_defaults
+
+
+
+  ### CLASS METHODS ###
+
+
 
 
 

@@ -19,7 +19,7 @@
   <% end %>
   <% @yarn.knots.each do |knot| %>
       <div class="yarn-knots">
-        <%= knot.details %>
+        <%= render 'knots/details', knot: knot %>
       </div>
   <% end %>
 </div>

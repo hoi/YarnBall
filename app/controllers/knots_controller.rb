@@ -1,4 +1,5 @@
 class KnotsController < ApplicationController
+  before_action :set_knot, only: [:edit, :update, :done]
 
   def index
     yarn_ids = current_user.yarns.map(&:id)
@@ -8,7 +9,7 @@ class KnotsController < ApplicationController
 
   def new
     @knot = Knot.new
-    @knot.yarn = @root
+    @knot.yarn = current_user.yarns.find_by(name: Yarn::UNSORTED_NAME)
   end
 
 
@@ -19,7 +20,31 @@ class KnotsController < ApplicationController
   end
 
 
+  def edit
+  end
+
+
+  def update
+    @knot.update(knot_params)
+
+    redirect_to "/yarns/#{@knot.yarn_id}"
+  end
+
+
+  def done
+    @knot.done = !@knot.done
+    @knot.save!
+
+    redirect_to "/yarns/#{@knot.yarn_id}"
+  end
+
+
   private
+
+
+  def set_knot
+    @knot = Knot.find(params[:id])
+  end
 
 
   def knot_params

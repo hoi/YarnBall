@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   get '/yarns/:yarn_id', to: 'yarns#show'
   post '/yarns', to: 'yarns#create'
 
-  get '/knots', to: 'knots#index'
-  post '/knots', to: 'knots#create'
+  resources :knots
+  get '/knots/:id/done', to: 'knots#done'
 
   root to: 'knots#new'
 

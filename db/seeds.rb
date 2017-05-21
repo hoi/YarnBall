@@ -10,4 +10,4 @@ user = User.create!(username: "hyon", password: "asdf")
 
 root = user.yarns.create!(name: "root")
 
-user.yarns.create!(pid: root.id, name: "unsorted")
+user.yarns.create!(pid: root.id, name: Yarn::UNSORTED_NAME)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520000829) do
+ActiveRecord::Schema.define(version: 20170521220039) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,7 +23,13 @@ ActiveRecord::Schema.define(version: 20170520000829) do
     t.boolean  "done"
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
+    t.integer  "series_id"
     t.index ["yarn_id"], name: "index_knots_on_yarn_id", using: :btree
+  end
+
+  create_table "series", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tests", force: :cascade do |t|
@@ -37,8 +43,9 @@ ActiveRecord::Schema.define(version: 20170520000829) do
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.date     "last_refreshed_at"
   end
 
   create_table "yarns", force: :cascade do |t|

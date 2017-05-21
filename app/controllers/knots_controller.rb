@@ -4,6 +4,21 @@ class KnotsController < ApplicationController
   def index
     yarn_ids = current_user.yarns.map(&:id)
     @knots = Knot.where(yarn_id: yarn_ids).where(done: false).order(happens_at: :asc).limit(20)
+
+    # TODO: turn this into a background job
+    if (current_user.last_refreshed_at.nil? || current_user.last_refreshed_at < Knot::REFRESH_SERIES_MONTHS.months.ago)
+      series_ids = []
+      knots = Knot.where(done: false).where.not(repeat: Knot::REPEAT_NEVER).order(happens_at: :asc)
+      knots.each do |knot|
+        if !series_ids.include?(knot.series_id)
+          knot.refresh_series
+          series_ids << knot.series_id
+        end
+      end
+
+      current_user.last_refreshed_at = Date.today
+      current_user.save!
+    end
   end
 
 
@@ -18,6 +33,12 @@ class KnotsController < ApplicationController
   def create
     @knot = Knot.create!(knot_params)
 
+    if (knot_params[:repeat] != Knot::REPEAT_NEVER)
+      series = Series.create!
+      @knot.series_id = series.id
+      @knot.save!
+    end
+
     redirect_to "/knots"
   end
 
@@ -28,6 +49,8 @@ class KnotsController < ApplicationController
 
   def update
     @knot.update(knot_params)
+
+    @knot.refresh_series
 
     redirect_to "/yarns/#{@knot.yarn_id}"
   end

@@ -3,7 +3,7 @@
     <div class="knot-dropdown">
       <select id="knot_yarn_id" name="knot[yarn_id]">
         <% current_user.yarns.each do |yarn| %>
-            <option value="<%= yarn.id %>" <%= yarn.name=="unsorted" ? "selected" : "" %>><%= yarn.name %></option>
+            <option value="<%= yarn.id %>" <%= yarn.id==knot.yarn_id ? "selected" : "" %>><%= yarn.name %></option>
         <% end %>
       </select>
     </div>

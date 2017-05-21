@@ -9,7 +9,9 @@ class KnotsController < ApplicationController
 
   def new
     @knot = Knot.new
-    @knot.yarn = current_user.yarns.find_by(name: Yarn::UNSORTED_NAME)
+    puts "Yarn: " + params[:yid]
+    @knot.yarn = params[:yid].present? ? current_user.yarns.find(params[:yid]) : current_user.yarns.find_by(name: Yarn::UNSORTED_NAME)
+    puts @knot.yarn_id
   end
 
 

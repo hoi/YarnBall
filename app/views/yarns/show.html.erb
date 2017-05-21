@@ -6,8 +6,11 @@
     <%= @yarn.name %>
   </div>
   <div class="yarn-form">
-    <input type="text" />
-    <button>+</button>
+    <%= form_for(@new_yarn) do |f| %>
+        <%= f.text_field :name %>
+        <%= f.hidden_field :pid %>
+        <%= f.submit "+" %>
+    <% end %>
   </div>
   <% @children.each do |child| %>
       <div class="yarn-child">

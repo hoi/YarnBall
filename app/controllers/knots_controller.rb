@@ -3,7 +3,7 @@ class KnotsController < ApplicationController
 
   def index
     yarn_ids = current_user.yarns.map(&:id)
-    @knots = Knot.where(yarn_id: yarn_ids).where(done: false).order(happens_at: :asc).limit(20)
+    @knots = Knot.where(yarn_id: yarn_ids).where(done: false).where('happens_at < ?', 4.months.from_now).order(happens_at: :asc)
 
     # TODO: turn this into a background job
     if (current_user.last_refreshed_at.nil? || current_user.last_refreshed_at < Knot::REFRESH_SERIES_MONTHS.months.ago)

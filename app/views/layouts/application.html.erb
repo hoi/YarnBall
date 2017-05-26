@@ -27,24 +27,27 @@
   </head>
 
   <body>
-    <div class="container">
+    <nav class="navbar fixed-top bg-inverse">
+      Today: <%= Date.today.strftime("%-m.%-d - %A") %>
+    </nav>
+    <div class="main container">
       <%= yield %>
     </div>
-  <footer class="footer">
-    <div class="container">
-      <a href="/logout">
-        <button class="btn btn-secondary">⇦</button>
-      </a>
-      <a href="/yarns/<%= @root.id %>">
-        <button class="btn btn-primary">Yarns</button>
-      </a>
-      <a href="/knots">
-        <button class="btn btn-primary">List</button>
-      </a>
-      <a href="/">
-        <button class="btn btn-success">Add</button>
-      </a>
-    </div>
-  </footer>
+    <footer class="footer">
+      <div class="container">
+        <a href="/logout">
+          <button class="btn btn-secondary">⇦</button>
+        </a>
+        <a href="/yarns/<%= @root.id %>">
+          <button class="btn btn-primary">Yarns</button>
+        </a>
+        <a href="/knots">
+          <button class="btn btn-primary">List</button>
+        </a>
+        <a href="/">
+          <button class="btn btn-info">Add</button>
+        </a>
+      </div>
+    </footer>
   </body>
 </html>

@@ -1,3 +1,6 @@
+<nav class="navbar fixed-top bg-inverse">
+  Today: <%= Date.today.strftime("%-m.%-d - %A") %>
+</nav>
 <div class="knots-list">
   <% if @knots.count > 0 %>
     <% @knots.each do |knot| %>

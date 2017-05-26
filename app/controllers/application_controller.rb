@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
 
   def get_root
     @root = current_user.yarns.find_by(pid: nil)
+  rescue
+    @root = Struct.new("DummyYarn", :id).new(0)
   end
 
 end

@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
 
   skip_before_action :verify_current_user, only: [:new, :create]
-  skip_before_action :get_root, only: [:new, :create]
-
 
   def create
     user = User.find_by(username: params[:username])

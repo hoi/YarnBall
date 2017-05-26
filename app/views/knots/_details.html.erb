@@ -1,3 +1,18 @@
-<%= knot.happens_at.strftime("%m/%d") %> <%= knot.details %>
-<a href="/knots/<%= knot.id %>/edit">edit</a>
-<a href="/knots/<%= knot.id %>/done"><%= knot.done ? "undo" : "done" %></a>
+<div class="knot-metadata">
+  <div class="date float-left">
+    <%= knot.happens_at.strftime("%-m.%-d - %A") %>
+  </div>
+  <a class="float-right" href="/knots/<%= knot.id %>/done">
+    <button class="btn btn-success">
+      <%= knot.done ? "undo" : "done" %>
+    </button>
+  </a>
+  <a class="float-right" href="/knots/<%= knot.id %>/edit">
+    <button class="btn btn-warning">
+      ✎
+    </button>
+  </a>
+</div>
+<div class="knot-details">
+  <%= knot.details %>
+</div>

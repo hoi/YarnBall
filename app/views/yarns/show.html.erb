@@ -1,26 +1,20 @@
 <div class="yarn-show">
   <% if @yarn.pid.present? %>
-      <div class="yarn-up"><a href="/yarns/<%= @yarn.pid %>"><< <%= @parent.name %></a></div>
+    <%= render 'parent', yarn: @yarn, parent: @parent %>
   <% end %>
-  <div class="yarn-current">
-    <%= @yarn.name %>
-  </div>
-  <div class="yarn-form">
-    <%= form_for(@new_yarn) do |f| %>
-        <%= f.text_field :name %>
-        <%= f.hidden_field :pid %>
-        <%= f.submit "+" %>
-    <% end %>
-  </div>
+  <%= render 'details', yarn: @yarn %>
+  <%= render 'form', yarn: @new_yarn %>
   <% @children.each do |child| %>
-      <div class="yarn-child">
-        <a href="/yarns/<%= child.id %>"><%= child.name %></a>
-      </div>
+    <%= render 'details', yarn: child %>
   <% end %>
   <% @yarn.knots.each do |knot| %>
-      <div class="yarn-knots">
-        <%= render 'knots/details', knot: knot %>
-      </div>
+    <%= render 'knots/details', knot: knot %>
   <% end %>
-  <a href="/?yid=<%= @yarn.id %>">Add Knot</a>
+</div>
+<div class="yarn-add-knot">
+  <a href="/?yid=<%= @yarn.id %>">
+    <button class="btn btn-success">
+      Add Knot
+    </button>
+  </a>
 </div>

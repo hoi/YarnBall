@@ -1,0 +1,36 @@
+.yarn-show {
+  margin-bottom: 38px;
+
+  .yarn-parent {
+    background-color: #292b2c;
+    height: 48px;
+    color: #FFFFFF;
+    padding: 11px;
+  }
+
+  .yarn-form {
+    input {
+      width: 100%;
+      border: 1px solid #999;
+    }
+  }
+
+  .yarn-details {
+    background-color: #5bc0de;
+    height: 48px;
+    color: #FFFFFF;
+    padding: 11px;
+  }
+}
+
+.yarn-add-knot {
+  position: fixed;
+  bottom: 60px;
+  width: 100%;
+  z-index: 1030;
+  padding: 5px;
+
+  button {
+    width: 100%;
+  }
+}

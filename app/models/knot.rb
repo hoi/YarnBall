@@ -55,7 +55,9 @@ class Knot < ApplicationRecord
 
     knots.destroy_all
 
-    if (repeat == REPEAT_WEEKLY)
+    if (repeat == REPEAT_NEVER)
+      return true
+    elsif (repeat == REPEAT_WEEKLY)
       diff = 1.week
     elsif (repeat == REPEAT_MONTHLY)
       diff = 1.month

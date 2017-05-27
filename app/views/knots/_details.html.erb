@@ -1,6 +1,9 @@
 <div class="knot-metadata">
   <div class="date float-left">
     <%= knot.happens_at.strftime("%-m.%-d - %A") %>
+    <a href="/yarns/<%= knot.yarn.id %>">
+      [<%= knot.yarn.name %>]
+    </a>
   </div>
   <a class="float-right" href="/knots/<%= knot.id %>/done">
     <button class="btn btn-success">

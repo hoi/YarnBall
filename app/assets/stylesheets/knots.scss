@@ -42,6 +42,10 @@
   margin-top: 40px;
 }
 
+.with-show-more {
+  margin-bottom: 98px;
+}
+
 .knot-metadata {
   color: #FFFFFF;
   height: 48px;
@@ -70,4 +74,17 @@
 
 .knot-details {
   padding: 10px;
+}
+
+.knot-show-more {
+  background-color: #FFFFFF;
+  position: fixed;
+  bottom: 60px;
+  width: 100%;
+  z-index: 1030;
+  padding: 5px;
+
+  button {
+    width: 100%;
+  }
 }

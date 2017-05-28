@@ -1,7 +1,7 @@
 <nav class="navbar fixed-top bg-inverse">
   Today: <%= Date.today.strftime("%-m.%-d - %A") %>
 </nav>
-<div class="knots-list">
+<div class="knots-list <%= @show_more ? "" : "with-show-more" %>">
   <% if @knots.count > 0 %>
     <% @knots.each do |knot| %>
       <div class="knot">
@@ -12,3 +12,12 @@
     No knots.
   <% end %>
 </div>
+<% if !@show_more %>
+  <div class="knot-show-more">
+    <a href="/knots?s=t">
+      <button class="btn btn-secondary">
+        Show More
+      </button>
+    </a>
+  </div>
+<% end %>

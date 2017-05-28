@@ -2,8 +2,14 @@ class KnotsController < ApplicationController
   before_action :set_knot, only: [:edit, :update, :done]
 
   def index
+    @show_more = params[:s].present? ? true : false
+
     yarn_ids = current_user.yarns.map(&:id)
-    @knots = Knot.where(yarn_id: yarn_ids).where(done: false).where('happens_at < ?', 4.months.from_now).order(happens_at: :asc)
+    if @show_more
+      @knots = Knot.where(yarn_id: yarn_ids).where(done: false).where('happens_at < ?', 4.months.from_now).order(happens_at: :asc)
+    else
+      @knots = Knot.where(yarn_id: yarn_ids).where(done: false).where('happens_at < ?', Date.tomorrow).order(happens_at: :asc)
+    end
 
     # TODO: turn this into a background job
     if (current_user.last_refreshed_at.nil? || current_user.last_refreshed_at < Knot::REFRESH_SERIES_MONTHS.months.ago)

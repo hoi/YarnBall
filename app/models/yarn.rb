@@ -10,7 +10,7 @@ class Yarn < ApplicationRecord
   ### ASSOCIATIONS ###
 
   belongs_to :user
-  has_many :knots
+  has_many :knots, dependent: :destroy
 
 
 

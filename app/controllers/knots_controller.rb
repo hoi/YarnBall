@@ -8,7 +8,7 @@ class KnotsController < ApplicationController
     if @show_more
       @knots = Knot.where(yarn_id: yarn_ids).where(done: false).where('happens_at < ?', 4.months.from_now).order(happens_at: :asc)
     else
-      @knots = Knot.where(yarn_id: yarn_ids).where(done: false).where('happens_at < ?', Date.tomorrow).order(happens_at: :asc)
+      @knots = Knot.where(yarn_id: yarn_ids).where(done: false).where('happens_at < ?', Date.today.to_time.utc.end_of_day).order(happens_at: :asc)
     end
 
     # TODO: turn this into a background job

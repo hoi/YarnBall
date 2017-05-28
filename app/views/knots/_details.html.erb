@@ -1,4 +1,4 @@
-<div class="knot-metadata">
+<div class="knot-metadata <%= knot.done ? "knot-inactive" : "knot-active" %>">
   <div class="date float-left">
     <%= knot.happens_at.strftime("%-m.%-d - %A") %>
     <a href="/yarns/<%= knot.yarn.id %>">
@@ -6,7 +6,7 @@
     </a>
   </div>
   <a class="float-right" href="/knots/<%= knot.id %>/done">
-    <button class="btn btn-success">
+    <button class="btn <%= knot.done ? "btn-danger" : "btn-success" %>">
       <%= knot.done ? "undo" : "done" %>
     </button>
   </a>

@@ -27,6 +27,19 @@
   </head>
 
   <body>
+    <% if refresh_flag %>
+      <script>
+        var d = new Date();
+        var n = d.getHours();
+        var offSet = 0;
+        if (n == 23) {
+          offSet = 7 * 60 * 60 * 1000;
+        }
+        var minutes = Math.random() * 30 * 60 * 1000 + offSet;
+        setTimeout(function () { location.reload(true); }, minutes);
+      </script>
+    <% end %>
+
     <div class="main">
       <%= yield %>
     </div>

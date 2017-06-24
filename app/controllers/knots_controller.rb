@@ -64,7 +64,7 @@ class KnotsController < ApplicationController
     @knot.done = !@knot.done
     @knot.save!
 
-    redirect_to "/yarns/#{@knot.yarn_id}"
+    redirect_to "/knots"
   end
 
 

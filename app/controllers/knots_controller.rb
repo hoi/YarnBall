@@ -12,19 +12,19 @@ class KnotsController < ApplicationController
     end
 
     # TODO: turn this into a background job
-    if (current_user.last_refreshed_at.nil? || current_user.last_refreshed_at < Knot::REFRESH_SERIES_MONTHS.months.ago)
-      series_ids = []
-      knots = Knot.where(done: false).where.not(repeat: Knot::REPEAT_NEVER).order(happens_at: :asc)
-      knots.each do |knot|
-        if !series_ids.include?(knot.series_id)
-          knot.refresh_series
-          series_ids << knot.series_id
-        end
-      end
-
-      current_user.last_refreshed_at = Date.today
-      current_user.save!
-    end
+    # if (current_user.last_refreshed_at.nil? || current_user.last_refreshed_at < Knot::REFRESH_SERIES_MONTHS.months.ago)
+    #   series_ids = []
+    #   knots = Knot.where(done: false).where.not(repeat: Knot::REPEAT_NEVER).order(happens_at: :asc)
+    #   knots.each do |knot|
+    #     if !series_ids.include?(knot.series_id)
+    #       knot.refresh_series
+    #       series_ids << knot.series_id
+    #     end
+    #   end
+    #
+    #   current_user.last_refreshed_at = Date.today
+    #   current_user.save!
+    # end
   end
 
 
@@ -54,7 +54,7 @@ class KnotsController < ApplicationController
   def update
     @knot.update(knot_params)
 
-    @knot.refresh_series
+    # @knot.refresh_series
 
     redirect_to "/yarns/#{@knot.yarn_id}"
   end

